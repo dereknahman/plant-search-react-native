@@ -20,10 +20,6 @@ const HomeScreen = ({navigation}) => {
   const {searchApi, errorMessage, results} = useResults();
   // TODO: handle errors properly
 
-  console.log('====================================');
-  console.log(results);
-  console.log('====================================');
-
   const apiSearchHandler = () => {
     searchApi(term);
     Keyboard.dismiss();

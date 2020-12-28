@@ -1,14 +1,56 @@
 import React from 'react';
-import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
+import {Text, StyleSheet, View, Image, Dimensions} from 'react-native';
 
-const PlantDetailScreen = () => {
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
+const PlantDetailScreen = ({route, ...props}) => {
+  console.log('====================================');
+  console.log('route params', route.params);
+  console.log('====================================');
+
+  const {
+    plantName,
+    plantFamily,
+    plantScientificName,
+    plantImageUrl,
+    plantYear,
+  } = route.params;
+
   return (
-    <SafeAreaView>
-      <Text>This is the plant detail screen</Text>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Text style={styles.text}>{plantName}</Text>
+      <Text>{plantFamily}</Text>
+      <Text>{plantScientificName}</Text>
+      <Image source={{uri: plantImageUrl}} style={styles.image} />
+
+      <View style={styles.plantBiography}>
+        <Text>This plant was first officially recorded in {plantYear}.</Text>
+      </View>
+    </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginHorizontal: windowWidth * 0.04,
+    marginTop: windowHeight * 0.02,
+  },
+  image: {
+    width: windowWidth * 0.9,
+    height: windowHeight * 0.35,
+    marginTop: windowHeight * 0.01,
+    borderRadius: 7,
+  },
+  text: {
+    color: '#005031',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  plantBiography: {
+    marginTop: windowHeight * 0.02,
+  },
+});
 
 export default PlantDetailScreen;

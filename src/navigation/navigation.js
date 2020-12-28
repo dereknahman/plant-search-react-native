@@ -17,7 +17,16 @@ const RootStackNavigator = () => {
           headerTitle: 'Plant Search',
         }}
       />
-      <Stack.Screen name="PlantDetail" component={PlantDetailScreen} />
+      <Stack.Screen
+        name="PlantDetail"
+        component={PlantDetailScreen}
+        options={{
+          headerStyle: {backgroundColor: '#005031'},
+          headerTintColor: 'white',
+          headerTitle: 'Plant Detail',
+          headerBackTitle: false,
+        }}
+      />
     </Stack.Navigator>
   );
 };

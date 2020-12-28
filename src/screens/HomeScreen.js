@@ -7,12 +7,27 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
+  Dimensions,
 } from 'react-native';
 import useResults from '../hooks/useResults';
+import {Keyboard} from 'react-native';
 
-const HomeScreen = () => {
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
+const HomeScreen = ({navigation}) => {
   const [term, setTerm] = useState('');
   const {searchApi, errorMessage, results} = useResults();
+  // TODO: handle errors properly
+
+  console.log('====================================');
+  console.log(results);
+  console.log('====================================');
+
+  const apiSearchHandler = () => {
+    searchApi(term);
+    Keyboard.dismiss();
+  };
 
   return (
     <View style={styles.container}>
@@ -28,7 +43,7 @@ const HomeScreen = () => {
           value={term}
         />
 
-        <TouchableOpacity style={styles.button} onPress={() => searchApi(term)}>
+        <TouchableOpacity style={styles.button} onPress={apiSearchHandler}>
           <Text style={styles.buttonText}>Search</Text>
         </TouchableOpacity>
       </View>
@@ -38,12 +53,23 @@ const HomeScreen = () => {
           data={results}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({item}) => (
-            <View style={styles.listItem}>
-              <Text style={styles.text}>{item.common_name}</Text>
-              <Text>Family: {item.family}</Text>
-              <Text>Scientific name: {item.scientific_name}</Text>
-              <Image source={{uri: item.image_url}} style={styles.image} />
-            </View>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('PlantDetail', {
+                  plantName: item.common_name,
+                  plantFamily: item.family,
+                  plantScientificName: item.scientific_name,
+                  plantImageUrl: item.image_url,
+                  plantYear: item.year,
+                })
+              }>
+              <View style={styles.listItem}>
+                <Text style={styles.text}>{item.common_name}</Text>
+                <Text>Family: {item.family}</Text>
+                <Text>Scientific name: {item.scientific_name}</Text>
+                <Image source={{uri: item.image_url}} style={styles.image} />
+              </View>
+            </TouchableOpacity>
           )}
         />
       </View>
@@ -54,11 +80,11 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: '20%',
-    marginHorizontal: '5%',
+    marginHorizontal: windowWidth * 0.04,
+    marginTop: windowHeight * 0.04,
   },
   header: {
-    marginBottom: '5%',
+    marginBottom: windowHeight * 0.01,
   },
   text: {
     color: '#005031',
@@ -67,15 +93,15 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     backgroundColor: '#dddddd',
-    width: 300,
-    height: 40,
-    borderRadius: 5,
+    width: windowWidth * 0.71,
+    height: windowHeight * 0.04,
+    borderRadius: 2,
     borderColor: '#005031',
     borderWidth: 1,
   },
   searchContainer: {
     flexDirection: 'row',
-    width: '100%',
+    width: windowWidth * 0.88,
     justifyContent: 'space-between',
   },
   button: {
@@ -83,25 +109,25 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '18%',
-    borderRadius: 15,
+    width: windowWidth * 0.16,
+    borderRadius: 10,
   },
   buttonText: {
     color: 'white',
     fontWeight: 'bold',
   },
   image: {
-    width: '98%',
-    height: 230,
-    marginTop: 5,
+    width: windowWidth * 0.9,
+    height: windowHeight * 0.25,
+    marginTop: windowHeight * 0.01,
     borderRadius: 7,
   },
   listContainer: {
-    marginTop: 20,
-    width: '100%',
+    marginTop: windowHeight * 0.005,
+    width: windowWidth * 0.9,
   },
   listItem: {
-    marginTop: 10,
+    marginTop: windowHeight * 0.02,
   },
 });
 

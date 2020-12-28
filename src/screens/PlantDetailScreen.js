@@ -10,8 +10,8 @@ const PlantDetailScreen = ({route, ...props}) => {
   console.log('====================================');
 
   const {
-    plantName,
     plantFamily,
+    plantFamilyCommonName,
     plantScientificName,
     plantImageUrl,
     plantYear,
@@ -19,9 +19,9 @@ const PlantDetailScreen = ({route, ...props}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{plantName}</Text>
-      <Text>{plantFamily}</Text>
-      <Text>{plantScientificName}</Text>
+      <Text>Family: {plantFamily}</Text>
+      <Text>Scientific name: {plantScientificName}</Text>
+      <Text>Family common name: {plantFamilyCommonName}</Text>
       <Image source={{uri: plantImageUrl}} style={styles.image} />
 
       <View style={styles.plantBiography}>

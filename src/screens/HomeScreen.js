@@ -58,6 +58,7 @@ const HomeScreen = ({navigation}) => {
                 navigation.navigate('PlantDetail', {
                   plantName: item.common_name,
                   plantFamily: item.family,
+                  plantFamilyCommonName: item.family_common_name,
                   plantScientificName: item.scientific_name,
                   plantImageUrl: item.image_url,
                   plantYear: item.year,

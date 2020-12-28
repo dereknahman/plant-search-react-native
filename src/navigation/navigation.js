@@ -7,25 +7,23 @@ const Stack = createStackNavigator();
 
 const RootStackNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {backgroundColor: '#005031'},
+        headerTintColor: 'white',
+        headerBackTitleVisible: false,
+      }}>
       <Stack.Screen
         name="Home"
         component={HomeScreen}
         options={{
-          headerStyle: {backgroundColor: '#005031'},
-          headerTintColor: 'white',
           headerTitle: 'Plant Search',
         }}
       />
       <Stack.Screen
         name="PlantDetail"
         component={PlantDetailScreen}
-        options={{
-          headerStyle: {backgroundColor: '#005031'},
-          headerTintColor: 'white',
-          headerTitle: 'Plant Detail',
-          headerBackTitle: false,
-        }}
+        options={({route}) => ({title: route.params.plantName})}
       />
     </Stack.Navigator>
   );

@@ -41,6 +41,7 @@ const HomeScreen = ({navigation}) => {
           placeholder="Search for your favourite plant"
           onChangeText={(text) => setTerm(text)}
           value={term}
+          onSubmitEditing={apiSearchHandler}
         />
 
         <TouchableOpacity style={styles.button} onPress={apiSearchHandler}>

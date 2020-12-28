@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     backgroundColor: '#dddddd',
-    width: windowWidth * 0.71,
+    width: windowWidth * 0.73,
     height: windowHeight * 0.04,
     borderRadius: 2,
     borderColor: '#005031',
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     flexDirection: 'row',
-    width: windowWidth * 0.88,
+    width: windowWidth * 0.9,
     justifyContent: 'space-between',
   },
   button: {

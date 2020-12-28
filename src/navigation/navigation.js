@@ -8,7 +8,15 @@ const Stack = createStackNavigator();
 const RootStackNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerStyle: {backgroundColor: '#005031'},
+          headerTintColor: 'white',
+          headerTitle: 'Plant Search',
+        }}
+      />
       <Stack.Screen name="PlantDetail" component={PlantDetailScreen} />
     </Stack.Navigator>
   );

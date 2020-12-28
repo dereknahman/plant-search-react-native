@@ -51,6 +51,7 @@ const HomeScreen = ({navigation}) => {
       <View style={styles.listContainer}>
         <FlatList
           data={results}
+          contentContainerStyle={{paddingBottom: windowHeight * 0.1}}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({item}) => (
             <TouchableOpacity

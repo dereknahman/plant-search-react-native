@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
     width: '98%',
     height: 230,
     marginTop: 5,
+    borderRadius: 7,
   },
   listContainer: {
     marginTop: 20,

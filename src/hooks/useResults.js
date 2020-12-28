@@ -12,9 +12,6 @@ const useResults = () => {
           q: term,
         },
       });
-      console.log('====================================');
-      console.log('--->', data.data);
-      console.log('====================================');
       setResults(data.data);
     } catch (err) {
       setErrorMessage('No data found. Are you sure you spelled it right?');

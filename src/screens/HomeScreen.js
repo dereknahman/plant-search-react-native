@@ -14,10 +14,6 @@ const HomeScreen = () => {
   const [term, setTerm] = useState('');
   const {searchApi, errorMessage, results} = useResults();
 
-  console.log('====================================');
-  console.log('RESULTS', results);
-  console.log('====================================');
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -40,7 +36,7 @@ const HomeScreen = () => {
       <View style={styles.listContainer}>
         <FlatList
           data={results}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.id.toString()}
           renderItem={({item}) => (
             <View style={styles.listItem}>
               <Text style={styles.text}>{item.common_name}</Text>
@@ -96,7 +92,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '98%',
-    height: 200,
+    height: 230,
     marginTop: 5,
   },
   listContainer: {
